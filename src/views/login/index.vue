@@ -70,11 +70,11 @@ export default {
     }
   },
   methods: {
+    // 点击登录按钮
     login() {
       this.$refs.form.validate(value => {
-        console.log('value', value)
         if (value) {
-          console.log('登录成功')
+          this.$store.dispatch('user/login', this.loginForm)
         }
       })
     }
