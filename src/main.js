@@ -1,4 +1,5 @@
 import Vue from 'vue'
+Vue.config.devtools = true
 
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 

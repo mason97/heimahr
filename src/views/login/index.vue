@@ -29,9 +29,9 @@ export default {
   data() {
     return {
       loginForm: {
-        mobile: '',
-        password: '',
-        isAgree: false
+        mobile: process.env.NODE_ENV === 'development' ? '13800000001' : '',
+        password: process.env.NODE_ENV === 'development' ? 'hm#qd@23!' : '',
+        isAgree: process.env.NODE_ENV === 'development'
       },
       loginRules: {
         mobile: [
@@ -75,9 +75,12 @@ export default {
   methods: {
     // 点击登录按钮
     login() {
-      this.$refs.form.validate(value => {
+      this.$refs.form.validate(async value => {
         if (value) {
-          this.$store.dispatch('user/login', this.loginForm)
+          const res = await this.$store.dispatch('user/login', this.loginForm)
+          // 跳转主页
+          console.log('res', res)
+          this.$router.push('/')
         }
       })
     }
