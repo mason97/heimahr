@@ -69,6 +69,9 @@ export default {
       }
     }
   },
+  created() {
+    console.log(process.env.NODE_ENV)
+  },
   methods: {
     // 点击登录按钮
     login() {
