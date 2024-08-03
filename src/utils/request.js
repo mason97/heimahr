@@ -14,9 +14,11 @@ const service = axios.create({
 // 请求拦截器
 // interceptors两个回调
 service.interceptors.request.use(config => {
+  console.log('store.getters', store.getters, config.hearders)
   // 如果token存在，则注入token
   if (store.getters.token) {
-    config.hearders.Authorization = `Bearer ${store.getters.token}`
+    // 给请求头添加token
+    config.headers.Authorization = `Bearer ${store.getters.token}`
   }
   return config
 }, (error) => {
